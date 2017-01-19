@@ -1,0 +1,26 @@
+{
+    "id": "ibm.devops.services.pipeline.findbugs",
+    "version": 1,
+    "name_key": "ExtName",
+    "desc_key": "ExtDesc",
+    "extension_type": "Test",
+    "message_key": "ExtMessage",
+    "inputs": [
+        {
+            "type": "Artifacts",
+            "inclusion" : "always"
+        }
+    ],
+    "params": [
+    ],
+    "outputs": [
+    ],
+    "execution": {
+        "type": "JenkinsDocker",
+        "shell": "#!/bin/bash
+"
+    },
+    "project": "https://github.com/jgkong/findbugs",
+    "project_example": "https://github.com/jgkong/findbugs",
+    "project_contact": "jgkong@kr.ibm.com"
+}
