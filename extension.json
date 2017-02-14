@@ -12,15 +12,90 @@
         }
     ],
     "params": [
+        {
+            "name": "TARGET",
+            "type": "Text",
+            "required": "true",
+            "default_value": "",
+            "label_key": "TARGET_KEY",
+            "desc_key": "TARGET_DESC"
+        },
+        {
+            "name": "CLASS",
+            "type": "Text",
+            "required": "false",
+            "default_value": "",
+            "label_key": "CLASS_KEY",
+            "desc_key": "CLASS_DESC"
+        },
+        {
+            "name": "EXCLUDE",
+            "type": "MultiSelect",
+            "required": "false",
+            "default_value": "ANY",
+            "label_key": "EXCLUDE_KEY",
+            "desc_key": "EXCLUDE_DESC",
+            "options": [
+                {
+                    "label_key": "BAD_PRACTICE_KEY",
+                    "value": "BAD_PRACTICE"
+                },
+                {
+                    "label_key": "CORRECTNESS_KEY",
+                    "value": "CORRECTNESS"
+                },
+                {
+                    "label_key": "EXPERIMENTAL_KEY",
+                    "value": "EXPERIMENTAL"
+                },
+                {
+                    "label_key": "I18N_KEY",
+                    "value": "I18N"
+                },
+                {
+                    "label_key": "MALICIOUS_CODE_KEY",
+                    "value": "MALICIOUS_CODE"
+                },
+                {
+                    "label_key": "MT_CORRECTNESS_KEY",
+                    "value": "MT_CORRECTNESS"
+                },
+                {
+                    "label_key": "PERFORMANCE_KEY",
+                    "value": "PERFORMANCE"
+                },
+                {
+                    "label_key": "SECURITY_KEY",
+                    "value": "SECURITY"
+                },
+                {
+                    "label_key": "STYLE_KEY",
+                    "value": "STYLE"
+                }
+            ]
+        }
     ],
     "outputs": [
     ],
     "execution": {
         "type": "JenkinsDocker",
         "shell": "#!/bin/bash
+export JAVA_HOME=$JAVA8_HOME
+export PATH=$JAVA_HOME/bin:$PATH
+
+FINDBUGS_TGZ=$EXT_DIR/lib/findbugs-noUpdateChecks-3.0.1.tar.gz
+FINDBUGS_PREFIX='findbugs'
+FINDBUGS_XML='findbugs_report.xml'
+mkdir -p $FINDBUGS_PREFIX
+tar xz -C $FINDBUGS_PREFIX -f $FINDBUGS_TGZ
+FINDBUGS_DIR=$(pwd)/$(ls -d $FINDBUGS_PREFIX/findbugs*)
+$FINDBUGS_DIR/bin/findbugs -xml:withMessages -output $FINDBUGS_XML -onlyAnalyze #CLASS#.- #TARGET#
+mkdir -p tests
+python $EXT_DIR/findbug_to_junit.py $FINDBUGS_XML tests/TEST-findbugs.xml
+
 "
     },
-    "project": "https://github.com/jgkong/findbugs",
-    "project_example": "https://github.com/jgkong/findbugs",
+    "project": "https://github.com/jgkong/findbugs_extension",
+    "project_example": "https://github.com/jgkong/findbugs_extension",
     "project_contact": "jgkong@kr.ibm.com"
 }
