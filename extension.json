@@ -27,52 +27,6 @@
             "default_value": "",
             "label_key": "CLASS_KEY",
             "desc_key": "CLASS_DESC"
-        },
-        {
-            "name": "EXCLUDE",
-            "type": "MultiSelect",
-            "required": "false",
-            "default_value": "ANY",
-            "label_key": "EXCLUDE_KEY",
-            "desc_key": "EXCLUDE_DESC",
-            "options": [
-                {
-                    "label_key": "BAD_PRACTICE_KEY",
-                    "value": "BAD_PRACTICE"
-                },
-                {
-                    "label_key": "CORRECTNESS_KEY",
-                    "value": "CORRECTNESS"
-                },
-                {
-                    "label_key": "EXPERIMENTAL_KEY",
-                    "value": "EXPERIMENTAL"
-                },
-                {
-                    "label_key": "I18N_KEY",
-                    "value": "I18N"
-                },
-                {
-                    "label_key": "MALICIOUS_CODE_KEY",
-                    "value": "MALICIOUS_CODE"
-                },
-                {
-                    "label_key": "MT_CORRECTNESS_KEY",
-                    "value": "MT_CORRECTNESS"
-                },
-                {
-                    "label_key": "PERFORMANCE_KEY",
-                    "value": "PERFORMANCE"
-                },
-                {
-                    "label_key": "SECURITY_KEY",
-                    "value": "SECURITY"
-                },
-                {
-                    "label_key": "STYLE_KEY",
-                    "value": "STYLE"
-                }
-            ]
         }
     ],
     "outputs": [
