@@ -30,6 +30,10 @@
         }
     ],
     "outputs": [
+        {
+            "type": "Tests",
+            "inclusion": "always"
+        }
     ],
     "execution": {
         "type": "JenkinsDocker",
